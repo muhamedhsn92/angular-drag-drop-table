@@ -1,0 +1,29 @@
+<!-- <div class="example-box" cdkDrag>
+  Drag me around
+</div> -->
+<div>
+  <button mat-raised-button (click)="tableIndex()">table index</button>
+</div>
+<table mat-table cdkDropList (cdkDropListDropped)="dropTable($event)" [cdkDropListData]="dataSource"
+  [dataSource]="dataSource" #table class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row (cdkDragStarted)="dragStarted($event,i)" [cdkDragData]="row"
+    *matRowDef="let row; columns: displayedColumns;let i=index" cdkDrag (cdkDragDropped)="dragEnd($event,i)"></tr>
+</table>
+<router-outlet></router-outlet>
